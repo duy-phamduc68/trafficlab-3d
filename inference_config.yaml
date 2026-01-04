@@ -1,0 +1,174 @@
+configs:
+
+  mild_smoothing:
+    prior_dimensions: "measurements_visdrone"
+
+    frames:
+      fps: 30
+      max_frame: 600
+
+    model:
+      weights: "./models/yolo8s-visdrone-ft.pt"
+      device: "0"
+      verbose: false
+      imgsz: 736
+      conf: 0.35
+      iou: 0.5
+      max_det: 600
+      agnostic_nms: false
+      half: true
+
+    tracking:
+      tracker_type: "bytetrack"
+      persist: true
+      track_high_thresh: 0.25
+      track_low_thresh: 0.1
+      new_track_thresh: 0.25
+      match_thresh: 0.8
+      track_buffer: 30
+      fuse_score: true
+
+    kinematics:
+      displacement_threshold: 0.3
+
+      heading_sampling_rate: 15
+      heading_smoothing: "adaptive_ema"
+
+      heading_ema:
+        alpha_min: 0.05
+        alpha_max: 0.4
+        speed_ref: 3.0
+
+      heading_min_speed_for_update: 0.1
+      heading_max_jump: 5
+      heading_recovery_frames: 15
+
+      heading_cosine_weighting: true
+      heading_cosine_min_angle: 10
+      heading_cosine_max_angle: 30
+
+      heading_sat_coords_weighting: true
+      heading_sat_coords_jitter_radius: 0.6
+      heading_sat_coords_jitter_frames: 8
+
+      heading_freeze_on_lost: true
+      heading_freeze_max_lost: 15
+
+      speed_smoothing: "ema"
+      speed_ema_alpha: 0.4
+
+
+  slight_smoothing:
+    prior_dimensions: "measurements_visdrone_v2"
+
+    frames:
+      fps: 30
+      max_frame: -1
+
+    model:
+      weights: "./models/yolo11s-visdrone-v2-ft.pt"
+      device: "0"
+      verbose: false
+      imgsz: 960
+      conf: 0.35
+      iou: 0.5
+      max_det: 600
+      agnostic_nms: false
+      half: true
+
+    tracking:
+      tracker_type: "bytetrack"
+      persist: true
+      track_high_thresh: 0.25
+      track_low_thresh: 0.1
+      new_track_thresh: 0.25
+      match_thresh: 0.8
+      track_buffer: 30
+      fuse_score: true
+
+    kinematics:
+      displacement_threshold: 0.25
+
+      heading_sampling_rate: 15
+      heading_smoothing: "adaptive_ema"
+
+      heading_ema:
+        alpha_min: 0.05
+        alpha_max: 0.4
+        speed_ref: 3.0
+
+      heading_min_speed_for_update: 0.1
+      heading_max_jump: 5
+      heading_recovery_frames: 10
+
+      heading_cosine_weighting: true
+      heading_cosine_min_angle: 10
+      heading_cosine_max_angle: 30
+
+      heading_sat_coords_weighting: true
+      heading_sat_coords_jitter_radius: 0.5
+      heading_sat_coords_jitter_frames: 8
+
+      heading_freeze_on_lost: true
+      heading_freeze_max_lost: 15
+
+      speed_smoothing: "ema"
+      speed_ema_alpha: 0.4
+
+
+  slight_smoothing_more_heading:
+    prior_dimensions: "measurements_visdrone_v2"
+
+    frames:
+      fps: 30
+      max_frame: -1
+
+    model:
+      weights: "./models/yolo11s-visdrone-v2-ft.pt"
+      device: "0"
+      verbose: false
+      imgsz: 960
+      conf: 0.35
+      iou: 0.5
+      max_det: 600
+      agnostic_nms: false
+      half: true
+
+    tracking:
+      tracker_type: "bytetrack"
+      persist: true
+      track_high_thresh: 0.25
+      track_low_thresh: 0.1
+      new_track_thresh: 0.25
+      match_thresh: 0.8
+      track_buffer: 30
+      fuse_score: true
+
+    kinematics:
+      displacement_threshold: 0.25
+
+      heading_sampling_rate: 10
+      heading_smoothing: "adaptive_ema"
+
+      heading_ema:
+        alpha_min: 0.05
+        alpha_max: 0.4
+        speed_ref: 3.0
+
+      heading_min_speed_for_update: 0.1
+      heading_max_jump: 5
+      heading_recovery_frames: 10
+
+      heading_cosine_weighting: true
+      heading_cosine_min_angle: 10
+      heading_cosine_max_angle: 30
+
+      heading_sat_coords_weighting: true
+      heading_sat_coords_jitter_radius: 0.5
+      heading_sat_coords_jitter_frames: 8
+
+      heading_freeze_on_lost: true
+      heading_freeze_max_lost: 15
+
+      speed_smoothing: "ema"
+      speed_ema_alpha: 0.4
